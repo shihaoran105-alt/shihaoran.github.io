@@ -1,9 +1,11 @@
 // 网站的“内容控制台”：中英文履历、文章和照片都集中在这里，便于后续更新。
 export type Language = 'en' | 'zh'
 
+const asset = (path: string) => `${import.meta.env.BASE_URL}${path}`
+
 const sharedProfile = {
   email: 'shihaoran105@outlook.com',
-  portrait: '/photos/cv-cover.jpg',
+  portrait: asset('photos/cv-cover.jpg'),
   portraitFocus: '50% 44%',
   socials: [] as { label: string; href: string }[],
 }
@@ -102,15 +104,15 @@ export const content = {
   },
 } as const
 
-export const journalCover = { src: '/photos/journal-cover.jpeg', alt: 'Shi Haoran at Taman Sari in Yogyakarta', focus: '70% 45%' }
+export const journalCover = { src: asset('photos/journal-cover.jpeg'), alt: 'Shi Haoran at Taman Sari in Yogyakarta', focus: '70% 45%' }
 
 export const photos = [
-  { src: '/photos/prambanan.jpeg', alt: 'Shi Haoran at Prambanan Temple, Indonesia', focus: '27% 45%' },
-  { src: '/photos/aviation-museum.jpeg', alt: 'Shi Haoran in front of a helicopter', focus: '51% 49%' },
-  { src: '/photos/panda-city.jpeg', alt: 'Shi Haoran with a panda sculpture in the city', focus: '61% 40%' },
-  { src: '/photos/mountain-river.jpeg', alt: 'Shi Haoran beside a mountain river', focus: '69% 51%' },
-  { src: '/photos/seoul-blue-house.jpeg', alt: 'Shi Haoran at the Blue House in Seoul', focus: '77% 38%' },
-  { src: '/photos/cathedral.jpeg', alt: 'Shi Haoran inside a cathedral', focus: '29% 41%' },
-  { src: '/photos/vienna.jpeg', alt: 'Shi Haoran at Karlskirche in Vienna', focus: '28% 37%' },
-  { src: '/photos/vienna-street.jpeg', alt: 'Shi Haoran by an urban water pipe installation', focus: '65% 50%' },
+  { src: asset('photos/prambanan.jpeg'), alt: 'Shi Haoran at Prambanan Temple, Indonesia', focus: '27% 45%' },
+  { src: asset('photos/aviation-museum.jpeg'), alt: 'Shi Haoran in front of a helicopter', focus: '51% 49%' },
+  { src: asset('photos/panda-city.jpeg'), alt: 'Shi Haoran with a panda sculpture in the city', focus: '61% 40%' },
+  { src: asset('photos/mountain-river.jpeg'), alt: 'Shi Haoran beside a mountain river', focus: '69% 51%' },
+  { src: asset('photos/seoul-blue-house.jpeg'), alt: 'Shi Haoran at the Blue House in Seoul', focus: '77% 38%' },
+  { src: asset('photos/cathedral.jpeg'), alt: 'Shi Haoran inside a cathedral', focus: '29% 41%' },
+  { src: asset('photos/vienna.jpeg'), alt: 'Shi Haoran at Karlskirche in Vienna', focus: '28% 37%' },
+  { src: asset('photos/vienna-street.jpeg'), alt: 'Shi Haoran by an urban water pipe installation', focus: '65% 50%' },
 ] as const

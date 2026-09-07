@@ -13,4 +13,4 @@ npm run dev
 
 Pushes to the `main` branch are automatically deployed to GitHub Pages through GitHub Actions.
 
-Live site: https://shihaoran105-alt.github.io/
+Live site: https://shihaoran105-alt.github.io/shihaoran.github.io/
