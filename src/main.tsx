@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { ArrowRight, Menu, X } from 'lucide-react'
 import { brnoGallery, content, journalCover, type Language } from './content'
@@ -7,6 +7,7 @@ import './styles.css'
 type Page = 'cv' | 'journal' | 'photos' | 'about'
 type Copy = typeof content.en | typeof content.zh
 type Journey = Copy['journeys'][number]
+const pages: Page[] = ['cv', 'journal', 'photos', 'about']
 
 const Arrow = () => <ArrowRight size={17} strokeWidth={1.6}/>
 const Label = ({children}:{children:React.ReactNode}) => <h3 className="section-label">{children}</h3>
@@ -18,7 +19,7 @@ function Header({page,setPage,lang,setLang,t}:{page:Page,setPage:(p:Page)=>void,
   return <header>
     <button className="brand" onClick={()=>go('cv')}>{t.profile.name}</button>
     <button className="menu" aria-label={t.ui.menu} onClick={()=>setOpen(!open)}>{open?<X/>:<Menu/>}</button>
-    <nav className={open?'open':''}>{(['cv','journal','photos','about'] as Page[]).map(p=><button className={page===p?'active':''} onClick={()=>go(p)} key={p}>{t.nav[p]}</button>)}</nav>
+    <nav className={open?'open':''}>{pages.map(p=><button className={page===p?'active':''} onClick={()=>go(p)} key={p}>{t.nav[p]}</button>)}</nav>
     <button className="language" aria-label={t.ui.switchLanguage} onClick={toggleLanguage}><span className={lang==='zh'?'active':''}>中文</span><i>/</i><span className={lang==='en'?'active':''}>EN</span></button>
   </header>
 }
@@ -45,7 +46,7 @@ function JourneyCard({journey,index,onOpen,compact=false}:{journey:Journey,index
 
 function BrnoStory({lang}:{lang:Language}) {
   return <div className="brno-story">
-    <div className="brno-intro"><span>{lang==='zh'?'布尔诺 · 九个画面':'Brno · Nine frames'}</span><p>{lang==='zh'?'这组照片从校园出发，经过城堡、街道与湖边，也走进孟德尔留下科学史痕迹的空间。它不是景点清单，而是一段关于学习、城市尺度与偶然细节的视觉笔记。':'Beginning on campus, these photographs move through a castle, city streets and the lakeside, then into the spaces where Mendel left his mark on scientific history. It is less a checklist of sights than a visual note on learning, urban scale, and accidental detail.'}</p></div>
+    <div className="brno-intro"><span>{lang==='zh'?'布尔诺 · 九个画面':'Brno · Nine frames'}</span><p>{lang==='zh'?'在布尔诺度过的日子，是我认识中东欧的开始。除了在布尔诺理工大学学习引人入胜的人工智能课程，这座陌生城市的文化、生活节奏与周遭环境也让整段经历格外珍贵。从山坡小径到斯皮尔博城堡，从校园庭院到湖岸，我第一次如此真切地感受到：数百年的历史，依然在为捷克今天的日常生活着色。':'The days I spent in Brno were my introduction to Central and Eastern Europe. Beyond the fascinating AI courses I took at Brno University of Technology, encountering the city’s culture, rhythms, and unfamiliar surroundings made the experience truly extraordinary. From hillside paths to Špilberk Castle, and from campus courtyards to the lakeshore, Brno allowed me to discover how centuries of history continue to color everyday life in the Czech Republic.'}</p></div>
     <div className="brno-gallery">{brnoGallery.map((photo,i)=><figure className={photo.layout} key={photo.src}><div><img src={photo.src} alt={lang==='zh'?photo.zh:photo.en} style={{objectPosition:photo.focus}}/><span>{String(i+1).padStart(2,'0')}</span></div><figcaption>{lang==='zh'?photo.zh:photo.en}</figcaption></figure>)}</div>
   </div>
 }
@@ -73,5 +74,56 @@ function About({t}:{t:Copy}){return <section className="about"><h1>{t.about.head
 function Newsletter({t}:{t:Copy}){return <section className="newsletter"><div><h2>{t.ui.newsletterTitle}</h2><p>{t.ui.newsletterText}</p></div><form onSubmit={e=>{e.preventDefault();alert(t.ui.subscribed)}}><input required type="email" aria-label={t.ui.email} placeholder={t.ui.emailPlaceholder}/><button>{t.ui.stayInTouch}</button></form></section>}
 function Footer({t}:{t:Copy}){return <footer><div><b>{t.profile.name}</b><p>{t.profile.footer}</p></div><div><a href={`mailto:${t.profile.email}`}>{t.profile.email}</a><p>{t.profile.location}</p></div><div className="socials">{t.profile.socials.map(s=><a href={s.href} key={s.label}>{s.label}</a>)}</div></footer>}
 
-function App(){const [page,setPage]=useState<Page>('cv'); const [lang,setLang]=useState<Language>('en'); const [selectedJourney,setSelectedJourney]=useState<string|null>(null); const t=content[lang]; const openJourney=(slug:string)=>{setSelectedJourney(slug);setPage('journal')}; return <main><Header page={page} setPage={setPage} lang={lang} setLang={setLang} t={t}/><div className="page-shell" key={`${page}-${lang}`}>{page==='cv'&&<CV setPage={setPage} t={t}/>} {page==='journal'&&<Journal setPage={setPage} t={t} selectedJourney={selectedJourney} onOpenJourney={openJourney}/>} {page==='photos'&&<Photos t={t} onOpenJourney={openJourney}/>} {page==='about'&&<About t={t}/>}<Footer t={t}/></div></main>}
+function App(){
+  const [page,setPage]=useState<Page>('cv')
+  const [lang,setLang]=useState<Language>('en')
+  const [selectedJourney,setSelectedJourney]=useState<string|null>(null)
+  const [direction,setDirection]=useState<'forward'|'backward'>('forward')
+  const gesture=useRef({x:0,y:0,tracking:false})
+  const wheelLocked=useRef(false)
+  const t=content[lang]
+
+  const navigate=(next:Page)=>{
+    if(next===page) return
+    setDirection(pages.indexOf(next)>pages.indexOf(page)?'forward':'backward')
+    setPage(next)
+    window.scrollTo({top:0,behavior:'smooth'})
+  }
+  const shiftPage=(step:-1|1)=>{
+    const nextIndex=Math.min(pages.length-1,Math.max(0,pages.indexOf(page)+step))
+    navigate(pages[nextIndex])
+  }
+  const openJourney=(slug:string)=>{setSelectedJourney(slug);navigate('journal')}
+  const isInteractive=(target:EventTarget|null)=>target instanceof Element&&Boolean(target.closest('button,a,input,textarea,select'))
+  const onPointerDown=(event:React.PointerEvent)=>{
+    if(isInteractive(event.target)) return
+    gesture.current={x:event.clientX,y:event.clientY,tracking:true}
+  }
+  const onPointerUp=(event:React.PointerEvent)=>{
+    if(!gesture.current.tracking) return
+    const dx=event.clientX-gesture.current.x
+    const dy=event.clientY-gesture.current.y
+    gesture.current.tracking=false
+    if(Math.abs(dx)>80&&Math.abs(dx)>Math.abs(dy)*1.25) shiftPage(dx<0?1:-1)
+  }
+  const onWheel=(event:React.WheelEvent)=>{
+    if(wheelLocked.current||Math.abs(event.deltaX)<55||Math.abs(event.deltaX)<Math.abs(event.deltaY)*1.25) return
+    wheelLocked.current=true
+    shiftPage(event.deltaX>0?1:-1)
+    window.setTimeout(()=>{wheelLocked.current=false},700)
+  }
+
+  useEffect(()=>{
+    const elements=[...document.querySelectorAll<HTMLElement>('.page-shell > section, .page-shell > footer, .brno-gallery figure')]
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){elements.forEach(el=>el.classList.add('reveal-visible'));return}
+    elements.forEach(el=>el.classList.add('reveal-on-scroll'))
+    const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+      if(entry.isIntersecting){entry.target.classList.add('reveal-visible');observer.unobserve(entry.target)}
+    }),{threshold:.08,rootMargin:'0px 0px -8% 0px'})
+    elements.forEach(el=>observer.observe(el))
+    return()=>observer.disconnect()
+  },[page,lang])
+
+  return <main><Header page={page} setPage={navigate} lang={lang} setLang={setLang} t={t}/><div className={`page-shell slide-${direction}`} key={`${page}-${lang}`} onPointerDown={onPointerDown} onPointerUp={onPointerUp} onPointerCancel={()=>{gesture.current.tracking=false}} onWheel={onWheel}>{page==='cv'&&<CV setPage={navigate} t={t}/>} {page==='journal'&&<Journal setPage={navigate} t={t} selectedJourney={selectedJourney} onOpenJourney={openJourney}/>} {page==='photos'&&<Photos t={t} onOpenJourney={openJourney}/>} {page==='about'&&<About t={t}/>}<Footer t={t}/></div></main>
+}
 createRoot(document.getElementById('root')!).render(<App/>)

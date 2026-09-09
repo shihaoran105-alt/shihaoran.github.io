@@ -11,7 +11,8 @@
 .language i{font-style:normal;color:#aaa}
 .language span{transition:color .25s ease}
 .language span.active{color:var(--blue);font-weight:600}
-.page-shell{animation:page-in .6s cubic-bezier(.22,.8,.28,1) both}
+.page-shell{animation:page-in .6s cubic-bezier(.22,.8,.28,1) both;touch-action:pan-y}
+.page-shell.slide-forward{--page-shift:34px}.page-shell.slide-backward{--page-shift:-34px}
 .hero h1,.journal-hero h1,.photos-intro h1,.about h1,.photo-strip h2,footer p{white-space:pre-line}
 .hero-copy>*{animation:rise-in .7s cubic-bezier(.22,.8,.28,1) both}
 .hero-copy>p{animation-delay:.08s}.hero-copy>.actions{animation-delay:.16s}
@@ -30,7 +31,7 @@ nav button.active:after{transform:scaleX(1)}
 .actions a:hover svg,.actions button:hover svg,.journal-hero a:hover svg,.photo-strip button:hover svg,.about a:hover svg{transform:translateX(5px)}
 .gallery button{overflow:hidden}.gallery button span{z-index:1}.gallery button:hover img{filter:saturate(1.08)}
 .lightbox{animation:fade-in .25s ease both}.lightbox img{animation:lightbox-in .4s cubic-bezier(.22,.8,.28,1) both}
-@keyframes page-in{from{opacity:0}to{opacity:1}}
+@keyframes page-in{from{opacity:0;transform:translateX(var(--page-shift,0))}to{opacity:1;transform:none}}
 @keyframes rise-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @keyframes reveal-in{from{opacity:0;clip-path:inset(8% 0 0 0);transform:translateY(16px)}to{opacity:1;clip-path:inset(0);transform:none}}
 @keyframes fade-in{from{opacity:0}to{opacity:1}}
@@ -60,7 +61,7 @@ nav button.active:after{transform:scaleX(1)}
 .journey-articles>article{grid-column:2;display:grid;grid-template-columns:54px 1fr;border-top:1px solid var(--line);padding:30px 0;scroll-margin-top:30px;transition:background .4s ease,padding .4s ease}
 .journey-articles>article:first-of-type{border-top:0}.journey-articles>article>span{font:25px var(--serif);color:#777}
 .journey-articles h2{font:38px/1 var(--serif);margin:8px 0 6px}.journey-articles time{font-size:12px;letter-spacing:.07em;text-transform:uppercase}.journey-articles b{font-size:14px;font-weight:500}.journey-articles p{max-width:650px;line-height:1.65;margin:18px 0 10px}.journey-articles em{font-size:12px;color:var(--blue);font-style:normal}
-.journey-articles>article.selected{background:#ecebe6;padding-left:20px;padding-right:20px}
+.journey-articles>article.selected{box-shadow:inset 2px 0 var(--blue);padding-left:20px;padding-right:20px}
 @media(max-width:800px){.journey-grid{grid-template-columns:1fr;gap:14px}.journey-card,.journey-card:nth-child(n){height:430px}.journey-overlay{opacity:1;transform:none}.journey-card:after{opacity:.85}.photo-strip .journey-card.compact,.photo-strip .journey-card.compact:nth-child(n){height:210px}.photo-strip .journey-overlay>span,.photo-strip .journey-overlay>b{display:none}.journey-articles{grid-template-columns:1fr;padding:36px 0 55px}.journey-articles-head p{max-width:100%}.journey-articles>article{grid-column:1;grid-template-columns:38px 1fr;padding:25px 0}.journey-articles h2{font-size:31px}.journey-articles>article.selected{margin:0 -10px;padding-left:10px;padding-right:10px}}
 
 /* Brno photo essay */
@@ -77,3 +78,9 @@ nav button.active:after{transform:scaleX(1)}
 .brno-gallery figure>div>span{position:absolute;right:12px;top:12px;background:rgba(248,247,243,.92);color:#111;padding:5px 7px;font-size:10px}
 .brno-gallery figcaption{font-size:12px;line-height:1.45;margin-top:10px;color:#555;max-width:480px}
 @media(max-width:800px){.journey-articles>article.feature-story{padding-bottom:48px}.brno-story{margin-top:34px}.brno-intro{grid-template-columns:1fr;gap:12px;margin-bottom:28px}.brno-intro>p{font-size:23px}.brno-gallery{display:block}.brno-gallery figure{margin-bottom:26px}.brno-gallery figure>div,.brno-gallery figure.wide>div{aspect-ratio:4/3}.brno-gallery figure.portrait>div{aspect-ratio:3/4}}
+
+/* Content enters gently as it reaches the viewport. */
+.reveal-on-scroll{opacity:0;transform:translateY(34px);transition:opacity .72s cubic-bezier(.22,.8,.28,1),transform .72s cubic-bezier(.22,.8,.28,1)}
+.reveal-on-scroll.reveal-visible{opacity:1;transform:none}
+.brno-gallery figure.reveal-on-scroll:nth-child(2n){transition-delay:.07s}
+@media(prefers-reduced-motion:reduce){.reveal-on-scroll{opacity:1;transform:none}}
