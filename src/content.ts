@@ -47,6 +47,8 @@ export const content = {
       { degree: 'B.Eng. in Internet of Things', school: 'The Hong Kong Polytechnic University · 2024 — Present', detail: 'Secondary Major in Artificial Intelligence and Data Analytics (AIDA) · Minor in Computer Science · CGPA 3.14' },
       { degree: 'Cyber Security & Machine Learning Study Tour', school: 'Brno University of Technology · Aug 2025', detail: 'PolyU BUT study tour in the Czech Republic.' },
       { degree: 'Astronomy Summer Session', school: 'University of California, Berkeley · Jun — Aug 2023', detail: 'Designed a supply system for a proposed human habitation base on Titan as part of a team project.' },
+      { degree: 'Beijing 21st Century International School', school: 'Mar 2022 — Jul 2024', detail: 'President of the Computer Club and Environmental Research Club · Instructor for the Robotics Mutual Learning Course · ACT 33 · Eight AP courses' },
+      { degree: 'Beijing Bayi School', school: 'Sep 2018 — Feb 2022', detail: 'Member of the Robotics Competition Team and the Student Union Publicity Department.' },
     ],
     skills: [
       ['AI & Data', 'Machine learning, local deployment of AI large language models, SQL, MongoDB'],
@@ -113,6 +115,8 @@ export const content = {
       { degree: '物联网工程学士', school: '香港理工大学 · 2024 — 至今', detail: '人工智能及数据分析（AIDA）第二主修 · 计算机科学副修 · CGPA 3.14' },
       { degree: '网络安全与机器学习研学', school: '布尔诺理工大学 · 2025.08', detail: '参加香港理工大学与布尔诺理工大学在捷克联合开展的研学项目。' },
       { degree: '天文学暑期课程', school: '加州大学伯克利分校 · 2023.06 — 2023.08', detail: '在团队项目中，为设想中的土卫六人类居住基地设计物资供应系统。' },
+      { degree: '北京二十一世纪学校', school: '2022.03 — 2024.07', detail: '电脑社社长 · 环境研究社社长 · 机器人 Mutual Learning Course 讲师 · ACT 33 · 修读八门 AP 课程' },
+      { degree: '北京市八一学校', school: '2018.09 — 2022.02', detail: '机器人竞赛队队员 · 学生会宣传部成员' },
     ],
     skills: [
       ['AI 与数据', '机器学习、AI 大模型本地部署、SQL、MongoDB'],
