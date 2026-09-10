@@ -72,7 +72,7 @@ export const content = {
     journeys: [
       { slug: 'czechia', location: 'Prague & Brno · Czechia', date: 'August 2025', title: 'Two rhythms in Central Europe', excerpt: 'From Prague’s layered streets to the quieter, student-facing rhythm of Brno.', image: asset('journal/Czech/brno-cover.jpg'), focus: '38% 48%' },
       { slug: 'vienna', location: 'Vienna · Austria', date: 'August 2025', title: 'A city composed like music', excerpt: 'Domes, late-summer light, and the elegant order of Vienna’s streets.', image: asset('photos/vienna.jpeg'), focus: '28% 37%' },
-      { slug: 'taiwan', location: 'Taiwan, China', date: 'May 2025', title: 'Between mountains and island streets', excerpt: 'An island journey shaped by food, neighborhoods, and changing weather.', image: asset('journal/Taiwan/Taipei_title.jpeg'), focus: '46% 44%' },
+      { slug: 'taiwan', location: 'Taiwan, China', date: 'May 2025', title: 'Between mountains and island streets', excerpt: 'An island journey shaped by food, neighborhoods, and changing weather.', image: asset('journal/Taiwan/web/01-jiufen-selfie.jpg'), focus: '46% 44%' },
       { slug: 'yogyakarta-service-learning', location: 'Yogyakarta · Indonesia', date: 'Date to be added', title: 'Eye care through service learning', excerpt: 'A service-learning experience connecting eye-care support, community engagement, and learning beyond the classroom.', image: asset('photos/prambanan.jpeg'), focus: '27% 45%' },
       { slug: 'japan', location: 'Kansai, Kanto & Shikoku · Japan', date: 'Date to be added', title: 'Concerts and the texture of local life', excerpt: 'Moving between concerts, regional trains, city nights, and ordinary daily scenes.', image: null, focus: '50% 50%' },
       { slug: 'korea', location: 'Seoul · Korea', date: 'December 2025', title: 'A winter walk through Seoul', excerpt: 'Cold blue skies, civic landmarks, and a city seen at walking pace.', image: asset('photos/seoul-blue-house.jpeg'), focus: '77% 38%' },
@@ -140,7 +140,7 @@ export const content = {
     journeys: [
       { slug: 'czechia', location: '捷克 · 布拉格与布尔诺', date: '2025 年 8 月', title: '中欧的两种节奏', excerpt: '从布拉格层叠的街巷，到布尔诺更安静、更贴近学生生活的城市节奏。', image: asset('journal/Czech/brno-cover.jpg'), focus: '38% 48%' },
       { slug: 'vienna', location: '奥地利 · 维也纳', date: '2025 年 8 月', title: '一座像音乐一样被编排的城市', excerpt: '穹顶、夏末的光，以及维也纳街道里优雅而克制的秩序。', image: asset('photos/vienna.jpeg'), focus: '28% 37%' },
-      { slug: 'taiwan', location: '中国台湾省', date: '2025 年 5 月', title: '山海之间的岛屿街巷', excerpt: '由食物、社区、山景与不断变化的天气共同构成的一段旅程。', image: asset('journal/Taiwan/Taipei_title.jpeg'), focus: '46% 44%' },
+      { slug: 'taiwan', location: '中国台湾省', date: '2025 年 5 月', title: '山海之间的岛屿街巷', excerpt: '由食物、社区、山景与不断变化的天气共同构成的一段旅程。', image: asset('journal/Taiwan/web/01-jiufen-selfie.jpg'), focus: '46% 44%' },
       { slug: 'yogyakarta-service-learning', location: '印度尼西亚 · 日惹', date: '日期待补充', title: '在服务学习中看见眼健康', excerpt: '一次连接眼科服务、社区参与与课堂之外实践学习的旅程。', image: asset('photos/prambanan.jpeg'), focus: '27% 45%' },
       { slug: 'japan', location: '日本 · 关西、关东与四国', date: '日期待补充', title: '演唱会与当地生活的纹理', excerpt: '在演唱会、地方列车、城市夜晚和日常生活之间移动。', image: null, focus: '50% 50%' },
       { slug: 'korea', location: '韩国 · 首尔', date: '2025 年 12 月', title: '冬日漫步首尔', excerpt: '冷冽的蓝天、城市地标，以及用步行速度重新观察一座城市。', image: asset('photos/seoul-blue-house.jpeg'), focus: '77% 38%' },
@@ -169,17 +169,17 @@ export const brnoGallery = [
 ] as const
 
 export const taiwanGallery = [
-  { src: asset('journal/Taiwan/Taipei_title.jpeg'), layout: 'wide', focus: 'center 45%', en: 'Lanterns and layered teahouses in Jiufen.', zh: '九份层叠的茶楼与灯笼，构成旅程的第一幕。' },
-  { src: asset('journal/Taiwan/Taipei_street.jpeg'), layout: 'five portrait', focus: 'center', en: 'Rain turns an ordinary Taipei lane into a field of reflections.', zh: '雨水把台北寻常的街巷变成一片倒影。' },
-  { src: asset('journal/Taiwan/Taipei_jiufen.jpeg'), layout: 'seven', focus: 'center', en: 'The coast appears beyond Jiufen at sunset.', zh: '黄昏时，从九份望见远处的山海。' },
-  { src: asset('journal/Taiwan/alishan2.jpeg'), layout: 'seven', focus: 'center', en: 'A quiet pause beside Sister Ponds in Alishan.', zh: '阿里山姐妹潭边，一段安静的停留。' },
-  { src: asset('journal/Taiwan/Alishan.jpeg'), layout: 'five portrait', focus: 'center', en: 'Looking upward into the ancient forest.', zh: '仰望阿里山古老而茂密的森林。' },
-  { src: asset('journal/Taiwan/Taipei_station.jpeg'), layout: 'wide', focus: 'center', en: 'Taipei Main Station glowing after the rain.', zh: '雨后的台北车站，在夜色中发亮。' },
-  { src: asset('journal/Taiwan/donghai_university.jpeg'), layout: 'five portrait', focus: 'center', en: 'Geometry, brick, and blue sky at Tunghai University.', zh: '东海大学里，砖墙的几何线条切向蓝天。' },
-  { src: asset('journal/Taiwan/Taipei_food.jpeg'), layout: 'seven', focus: 'center', en: 'Xiaolongbao and a cold drink between walks.', zh: '步行间隙的一份小笼包与冰饮。' },
-  { src: asset('journal/Taiwan/Taipei_musuem2.jpeg'), layout: 'five portrait', focus: 'center', en: 'A jade cabbage observed at close range.', zh: '在博物馆里近距离观看玉白菜。' },
-  { src: asset('journal/Taiwan/Taipei_西门町.jpeg'), layout: 'seven', focus: 'center', en: 'Ximending stays bright beneath a wet night sky.', zh: '雨夜之下，西门町依然明亮而热闹。' },
-  { src: asset('journal/Taiwan/biking in Taizhong.jpeg'), layout: 'wide', focus: 'center', en: 'Exploring Taichung at the pace of a bicycle.', zh: '用一辆自行车的速度认识台中。' },
+  { src: asset('journal/Taiwan/web/01-jiufen-selfie.jpg'), layout: 'wide', focus: 'center 45%', en: 'Lanterns and layered teahouses in Jiufen.', zh: '九份层叠的茶楼与灯笼，构成旅程的第一幕。' },
+  { src: asset('journal/Taiwan/web/02-taipei-rain.jpg'), layout: 'five portrait', focus: 'center', en: 'Rain turns an ordinary Taipei lane into a field of reflections.', zh: '雨水把台北寻常的街巷变成一片倒影。' },
+  { src: asset('journal/Taiwan/web/03-jiufen-sunset.jpg'), layout: 'seven', focus: 'center', en: 'The coast appears beyond Jiufen at sunset.', zh: '黄昏时，从九份望见远处的山海。' },
+  { src: asset('journal/Taiwan/web/04-alishan-pond.jpg'), layout: 'seven', focus: 'center', en: 'A quiet pause beside Sister Ponds in Alishan.', zh: '阿里山姐妹潭边，一段安静的停留。' },
+  { src: asset('journal/Taiwan/web/05-alishan-forest.jpg'), layout: 'five portrait', focus: 'center', en: 'Looking upward into the ancient forest.', zh: '仰望阿里山古老而茂密的森林。' },
+  { src: asset('journal/Taiwan/web/06-taipei-station.jpg'), layout: 'wide', focus: 'center', en: 'Taipei Main Station glowing after the rain.', zh: '雨后的台北车站，在夜色中发亮。' },
+  { src: asset('journal/Taiwan/web/07-tunghai.jpg'), layout: 'five portrait', focus: 'center', en: 'Geometry, brick, and blue sky at Tunghai University.', zh: '东海大学里，砖墙的几何线条切向蓝天。' },
+  { src: asset('journal/Taiwan/web/08-food.jpg'), layout: 'seven', focus: 'center', en: 'Xiaolongbao and a cold drink between walks.', zh: '步行间隙的一份小笼包与冰饮。' },
+  { src: asset('journal/Taiwan/web/09-jade.jpg'), layout: 'five portrait', focus: 'center', en: 'A jade cabbage observed at close range.', zh: '在博物馆里近距离观看玉白菜。' },
+  { src: asset('journal/Taiwan/web/10-ximending.jpg'), layout: 'seven', focus: 'center', en: 'Ximending stays bright beneath a wet night sky.', zh: '雨夜之下，西门町依然明亮而热闹。' },
+  { src: asset('journal/Taiwan/web/11-taichung-bike.jpg'), layout: 'wide', focus: 'center', en: 'Exploring Taichung at the pace of a bicycle.', zh: '用一辆自行车的速度认识台中。' },
 ] as const
 
 export const photos = [
