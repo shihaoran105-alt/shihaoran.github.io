@@ -47,7 +47,7 @@ function JourneyCard({journey,index,onOpen,compact=false}:{journey:Journey,index
 function BrnoStory({lang}:{lang:Language}) {
   return <div className="brno-story">
     <div className="brno-intro"><span>{lang==='zh'?'布尔诺 · 九个画面':'Brno · Nine frames'}</span><p>{lang==='zh'?'在布尔诺度过的日子，是我认识中东欧的开始。除了在布尔诺理工大学学习引人入胜的人工智能课程，这座陌生城市的文化、生活节奏与周遭环境也让整段经历格外珍贵。从山坡小径到斯皮尔博城堡，从校园庭院到湖岸，我第一次如此真切地感受到：数百年的历史，依然在为捷克今天的日常生活着色。':'The days I spent in Brno were my introduction to Central and Eastern Europe. Beyond the fascinating AI courses I took at Brno University of Technology, encountering the city’s culture, rhythms, and unfamiliar surroundings made the experience truly extraordinary. From hillside paths to Špilberk Castle, and from campus courtyards to the lakeshore, Brno allowed me to discover how centuries of history continue to color everyday life in the Czech Republic.'}</p></div>
-    <div className="brno-gallery">{brnoGallery.map((photo,i)=><figure className={photo.layout} key={photo.src}><div><img src={photo.src} alt={lang==='zh'?photo.zh:photo.en} style={{objectPosition:photo.focus}}/><span>{String(i+1).padStart(2,'0')}</span></div><figcaption>{lang==='zh'?photo.zh:photo.en}</figcaption></figure>)}</div>
+    <div className="brno-gallery">{brnoGallery.map((photo,i)=><figure className={photo.layout} key={photo.src}><div><img src={photo.src} alt={lang==='zh'?photo.zh:photo.en} style={{objectPosition:photo.focus}} loading="lazy"/><span>{String(i+1).padStart(2,'0')}</span></div><figcaption>{lang==='zh'?photo.zh:photo.en}</figcaption></figure>)}</div>
   </div>
 }
 
