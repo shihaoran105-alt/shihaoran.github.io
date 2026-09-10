@@ -79,8 +79,9 @@ nav button.active:after{transform:scaleX(1)}
 .brno-gallery figcaption{font-size:12px;line-height:1.45;margin-top:10px;color:#555;max-width:480px}
 @media(max-width:800px){.journey-articles>article.feature-story{padding-bottom:48px}.brno-story{margin-top:34px}.brno-intro{grid-template-columns:1fr;gap:12px;margin-bottom:28px}.brno-intro>p{font-size:23px}.brno-gallery{display:block}.brno-gallery figure{margin-bottom:26px}.brno-gallery figure>div,.brno-gallery figure.wide>div{aspect-ratio:4/3}.brno-gallery figure.portrait>div{aspect-ratio:3/4}}
 
-/* Content enters gently as it reaches the viewport. */
-.reveal-on-scroll{opacity:0;transform:translateY(34px);transition:opacity .72s cubic-bezier(.22,.8,.28,1),transform .72s cubic-bezier(.22,.8,.28,1)}
-.reveal-on-scroll.reveal-visible{opacity:1;transform:none}
+/* Content stays readable even when a browser pauses background animations. */
+.reveal-on-scroll{opacity:1;transform:none}
+.reveal-on-scroll.reveal-visible{animation:scroll-rise .72s cubic-bezier(.22,.8,.28,1)}
 .brno-gallery figure.reveal-on-scroll:nth-child(2n){transition-delay:.07s}
-@media(prefers-reduced-motion:reduce){.reveal-on-scroll{opacity:1;transform:none}}
+@keyframes scroll-rise{from{transform:translateY(34px)}to{transform:none}}
+@media(prefers-reduced-motion:reduce){.reveal-on-scroll.reveal-visible{animation:none}}
