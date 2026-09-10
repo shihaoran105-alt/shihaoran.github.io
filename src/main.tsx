@@ -128,7 +128,8 @@ function App(){
       if(entry.isIntersecting){entry.target.classList.add('reveal-visible');observer.unobserve(entry.target)}
     }),{threshold:.08,rootMargin:'0px 0px -8% 0px'})
     elements.forEach(el=>observer.observe(el))
-    return()=>observer.disconnect()
+    const safetyTimer=window.setTimeout(()=>elements.forEach(el=>el.classList.add('reveal-visible')),1200)
+    return()=>{observer.disconnect();window.clearTimeout(safetyTimer)}
   },[page,lang])
 
   return <main><Header page={page} setPage={navigate} lang={lang} setLang={setLang} t={t}/><div className={`page-shell slide-${direction}`} key={`${page}-${lang}`} onPointerDown={onPointerDown} onPointerUp={onPointerUp} onPointerCancel={()=>{gesture.current.tracking=false}} onWheel={onWheel}>{page==='cv'&&<CV setPage={navigate} t={t}/>} {page==='journal'&&<Journal setPage={navigate} t={t} selectedJourney={selectedJourney} onOpenJourney={openJourney}/>} {page==='photos'&&<Photos t={t} onOpenJourney={openJourney}/>} {page==='about'&&<About t={t}/>}<Footer t={t}/></div></main>
