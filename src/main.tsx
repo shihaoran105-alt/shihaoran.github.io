@@ -54,7 +54,7 @@ function BrnoStory({lang}:{lang:Language}) {
 function TaiwanStory({lang}:{lang:Language}) {
   return <div className="brno-story taiwan-story">
     <div className="brno-intro"><span>{lang==='zh'?'台湾影像手记':'Taiwan photo essay'}</span><p>{lang==='zh'?'从台北的雨夜与博物馆，到九份的山海、阿里山的森林，再到台中的骑行，这段旅程在城市密度与自然尺度之间不断切换。食物、建筑和街头细节，让每一次移动都成为认识当地生活的方式。':'From Taipei’s rainy nights and museums to Jiufen’s mountain-and-sea views, Alishan’s forests, and a bicycle ride through Taichung, this journey moved constantly between urban density and the scale of nature. Food, architecture, and small street details turned every change of place into a way of understanding local life.'}</p></div>
-    <div className="brno-gallery">{taiwanGallery.map((photo,i)=><figure className={photo.layout} key={photo.src}><div><img src={photo.src} alt={lang==='zh'?photo.zh:photo.en} style={{objectPosition:photo.focus}} loading="lazy"/><span>{String(i+1).padStart(2,'0')}</span></div><figcaption>{lang==='zh'?photo.zh:photo.en}</figcaption></figure>)}</div>
+    <div className="brno-gallery">{taiwanGallery.map((photo,i)=><figure className={photo.layout} key={photo.src}><div><img src={photo.src} alt={lang==='zh'?photo.zh:photo.en} style={{objectPosition:photo.focus}}/><span>{String(i+1).padStart(2,'0')}</span></div><figcaption>{lang==='zh'?photo.zh:photo.en}</figcaption></figure>)}</div>
   </div>
 }
 
