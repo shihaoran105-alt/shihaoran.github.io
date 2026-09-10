@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { ArrowRight, Menu, X } from 'lucide-react'
-import { brnoGallery, content, journalCover, type Language } from './content'
+import { brnoGallery, content, journalCover, taiwanGallery, type Language } from './content'
 import './styles.css'
 
 type Page = 'cv' | 'journal' | 'photos' | 'about'
@@ -51,6 +51,13 @@ function BrnoStory({lang}:{lang:Language}) {
   </div>
 }
 
+function TaiwanStory({lang}:{lang:Language}) {
+  return <div className="brno-story taiwan-story">
+    <div className="brno-intro"><span>{lang==='zh'?'台湾影像手记':'Taiwan photo essay'}</span><p>{lang==='zh'?'从台北的雨夜与博物馆，到九份的山海、阿里山的森林，再到台中的骑行，这段旅程在城市密度与自然尺度之间不断切换。食物、建筑和街头细节，让每一次移动都成为认识当地生活的方式。':'From Taipei’s rainy nights and museums to Jiufen’s mountain-and-sea views, Alishan’s forests, and a bicycle ride through Taichung, this journey moved constantly between urban density and the scale of nature. Food, architecture, and small street details turned every change of place into a way of understanding local life.'}</p></div>
+    <div className="brno-gallery">{taiwanGallery.map((photo,i)=><figure className={photo.layout} key={photo.src}><div><img src={photo.src} alt={lang==='zh'?photo.zh:photo.en} style={{objectPosition:photo.focus}} loading="lazy"/><span>{String(i+1).padStart(2,'0')}</span></div><figcaption>{lang==='zh'?photo.zh:photo.en}</figcaption></figure>)}</div>
+  </div>
+}
+
 function Journal({setPage,t,selectedJourney,onOpenJourney}:{setPage:(p:Page)=>void,t:Copy,selectedJourney:string|null,onOpenJourney:(slug:string)=>void}) {
   const [filter,setFilter] = useState(t.ui.all as string)
   const language: Language = t === content.zh ? 'zh' : 'en'
@@ -61,7 +68,7 @@ function Journal({setPage,t,selectedJourney,onOpenJourney}:{setPage:(p:Page)=>vo
     <section className="journal-hero"><h1>{t.journal.headline}</h1><div><p>{t.journal.intro}</p><a href="#essays">{t.ui.readLatest} <Arrow/></a></div></section>
     <section className="featured"><Label>{t.ui.featuredEssay}</Label><div className="featured-grid"><div className="media-frame"><img src={journalCover.src} alt={journalCover.alt} style={{objectPosition:journalCover.focus}}/></div><article><span>{t.posts[0].date}　/　{t.posts[0].category}</span><h2>{t.posts[0].title}</h2><p>{t.posts[0].excerpt}</p><span className="draft-note">{t.ui.draft}</span></article></div></section>
     <section id="essays" className="journal-list"><div className="journal-head"><Label>{t.ui.journal}</Label><div className="filters">{cats.map(c=><button className={filter===c?'active':''} onClick={()=>setFilter(c)} key={c}>{c}</button>)}</div></div>{shown.map(p=><article key={p.title}><time>{p.date}</time><span>{p.category}</span><div><h3>{p.title}</h3><p>{p.excerpt}</p></div><Arrow/></article>)}</section>
-    <section className="journey-articles"><div className="journey-articles-head"><Label>{t.ui.journeyArchive}</Label><p>{t.journal.photoText}</p></div>{t.journeys.map((journey,i)=><article id={`journey-${journey.slug}`} className={`${selectedJourney===journey.slug?'selected ':''}${journey.slug==='czechia'?'feature-story':''}`} key={journey.slug}><span>{String(i+1).padStart(2,'0')}</span><div><time>{journey.date}</time><h2>{journey.title}</h2><b>{journey.location}</b><p>{journey.excerpt}</p>{journey.slug==='czechia'?<BrnoStory lang={language}/>:<em>{t.ui.storyDraft}</em>}</div></article>)}</section>
+    <section className="journey-articles"><div className="journey-articles-head"><Label>{t.ui.journeyArchive}</Label><p>{t.journal.photoText}</p></div>{t.journeys.map((journey,i)=><article id={`journey-${journey.slug}`} className={`${selectedJourney===journey.slug?'selected ':''}${journey.slug==='czechia'||journey.slug==='taiwan'?'feature-story':''}`} key={journey.slug}><span>{String(i+1).padStart(2,'0')}</span><div><time>{journey.date}</time><h2>{journey.title}</h2><b>{journey.location}</b><p>{journey.excerpt}</p>{journey.slug==='czechia'?<BrnoStory lang={language}/>:journey.slug==='taiwan'?<TaiwanStory lang={language}/>:<em>{t.ui.storyDraft}</em>}</div></article>)}</section>
     <PhotoStrip setPage={setPage} t={t} onOpenJourney={onOpenJourney}/><Newsletter t={t}/>
   </>
 }
