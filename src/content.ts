@@ -7,7 +7,9 @@ const sharedProfile = {
   email: 'shihaoran105@outlook.com',
   portrait: asset('photos/cv-cover.jpg'),
   portraitFocus: '50% 44%',
-  socials: [] as { label: string; href: string }[],
+  socials: [
+    { label: 'GitHub', href: 'https://github.com/shihaoran105-alt' },
+  ] as { label: string; href: string }[],
 }
 
 const publicationLink = 'https://doi.org/10.25236/AJETS.2023.060302'
