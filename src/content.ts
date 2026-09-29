@@ -20,7 +20,7 @@ export const content = {
     ui: {
       viewWork: 'View my work', readJournal: 'Read my journal', selectedWork: 'Selected work',
       experience: 'Experience', education: 'Education', skills: 'Skills', publication: 'Publication', awards: 'Awards',
-      featuredEssay: 'Featured essay', journal: 'Journal', readLatest: 'Read the latest essay', draft: 'Essay draft coming soon',
+      featuredEssay: 'Featured project', journal: 'Projects', readLatest: 'Explore projects', draft: 'Open project', openProject: 'Visit platform', viewSource: 'View source',
       photoDiary: 'Photo diary', viewPhotos: 'View all photos', all: 'All', close: 'Close',
       journeys: 'Journeys', journeyArchive: 'Travel journal', openStory: 'Read this journey', storyDraft: 'Story and photographs coming soon', dateTbd: 'Date to be added', ongoing: 'Ongoing',
       startConversation: 'Start a conversation', email: 'Email', emailPlaceholder: 'Your email', stayInTouch: 'Stay in touch',
@@ -63,13 +63,10 @@ export const content = {
     ],
     highlights: ['First Prize, 4th Beijing Student “AI+” Competition — 2021', 'Gold Award, Australian Science Olympiads – Physics — 2022', 'Gold Award, International Chemistry Quiz — 2022', 'Bronze Award, British Physics Olympiad — 2023'],
     publication: { title: 'A Novel UAV Integrated with Fixed-Wings Aircrafts and Rotorcrafts', citation: 'Z. Zhang, H. Shi, L. Wen, X. Zhu · Academic Journal of Engineering and Technology Science, Vol. 6, Issue 3, 2023', href: publicationLink },
-    journal: { headline: 'Notes on design,\ntechnology, and\na life in progress.', intro: 'Essays and field notes on building useful things, traveling with curiosity, and staying thoughtful in practice.', photoTitle: 'Fragments from\nplaces and\nordinary days.', photoIntro: 'A visual diary\nof looking closer.', photoText: 'Places, people, light, and the small details worth remembering.' },
+    journal: { headline: 'Notes on design,\ntechnology, and\na life in progress.', intro: 'Projects and field notes on building useful things, traveling with curiosity, and staying thoughtful in practice.', photoTitle: 'Fragments from\nplaces and\nordinary days.', photoIntro: 'A visual diary\nof looking closer.', photoText: 'Places, people, light, and the small details worth remembering.' },
     about: { headline: 'I learn by building, researching, and seeing the world firsthand.', detail: 'My current interests sit at the intersection of agent systems, local knowledge infrastructure, machine learning, and the real-world industries they can support. Beyond technical work, I document the places I visit through photography.' },
     posts: [
-      { date: 'Coming soon', category: 'AI', title: 'Building a translation skill for an enterprise agent', excerpt: 'Notes on capability boundaries, reusable instructions, and deploying knowledge close to the user.' },
-      { date: 'Coming soon', category: 'Research', title: 'What makes a high-quality AI dataset?', excerpt: 'Ideas gathered while reviewing the future of data-intensive industries.' },
-      { date: 'Coming soon', category: 'Technology', title: 'Learning medical image AI from open source', excerpt: 'Environment setup, reproduction, and lessons from nnU-Net and nnFormer.' },
-      { date: 'Coming soon', category: 'Travel', title: 'Eight frames from recent journeys', excerpt: 'Temples, mountains, city streets, and small details worth keeping.' },
+      { date: 'Live project', category: 'Education Technology', title: 'AI Courseware Explanation Platform', excerpt: 'A student-centered AI learning platform that turns PPTs, PDFs, handouts, and lab guides into explanations, study plans, interactive exercises, and graded labs. Its GitHub Pages version processes courseware directly in the browser.', href: 'https://shihaoran105-alt.github.io/courseware-platform/', repoHref: 'https://github.com/shihaoran105-alt/courseware-platform' },
     ],
     journeys: [
       { slug: 'czechia', location: 'Prague & Brno · Czechia', date: 'August 2025', title: 'Two rhythms in Central Europe', excerpt: 'From Prague’s layered streets to the quieter, student-facing rhythm of Brno.', image: asset('journal/Czech/brno-cover.jpg'), focus: '38% 48%' },
@@ -90,7 +87,7 @@ export const content = {
     nav: { cv: '履历', journal: '随笔', photos: '照片', about: '关于' },
     ui: {
       viewWork: '查看项目', readJournal: '阅读随笔', selectedWork: '代表项目', experience: '实习经历', education: '教育背景', skills: '技能', publication: '论文', awards: '奖项',
-      featuredEssay: '精选文章', journal: '文章', readLatest: '阅读最新文章', draft: '文章正在撰写中', photoDiary: '照片日记', viewPhotos: '查看全部照片', all: '全部', close: '关闭',
+      featuredEssay: '精选项目', journal: '项目', readLatest: '查看项目', draft: '打开项目', openProject: '体验平台', viewSource: '查看源码', photoDiary: '照片日记', viewPhotos: '查看全部照片', all: '全部', close: '关闭',
       journeys: '旅程', journeyArchive: '旅行手记', openStory: '阅读这段旅程', storyDraft: '正文与更多照片待补充', dateTbd: '日期待补充', ongoing: '持续记录',
       startConversation: '和我联系', email: '邮箱', emailPlaceholder: '你的邮箱', stayInTouch: '保持联系', newsletterTitle: '偶尔来信。', newsletterText: '把值得分享的思考，直接送到你的邮箱。',
       subscribed: '谢谢，你已成功订阅！', switchLanguage: 'Switch to English', menu: '打开菜单',
@@ -134,10 +131,7 @@ export const content = {
     journal: { headline: '关于设计、\n技术，以及仍在\n展开的生活。', intro: '记录我如何构建实用工具、带着好奇旅行，并在实践中保持思考。', photoTitle: '来自旅途与\n日常生活的\n片段。', photoIntro: '一册关于\n认真观看的影像日记。', photoText: '记录地方、人物、光线，以及那些值得被记住的细节。' },
     about: { headline: '我通过构建、研究与亲身观察这个世界来学习。', detail: '我目前关注 Agent 系统、本地知识基础设施、机器学习，以及它们能够支持的真实行业场景。在技术工作之外，我也用摄影记录走过的地方。' },
     posts: [
-      { date: '即将发布', category: '人工智能', title: '为企业 Agent 构建翻译 Skill', excerpt: '关于能力边界、可复用指令，以及让知识更贴近使用者的部署笔记。' },
-      { date: '即将发布', category: '研究', title: '什么是高质量的 AI 数据集？', excerpt: '在研究数据密集型产业未来发展时整理的一些思考。' },
-      { date: '即将发布', category: '技术', title: '从开源项目学习医学影像 AI', excerpt: '记录环境搭建、项目复现，以及使用 nnU-Net 与 nnFormer 的经验。' },
-      { date: '即将发布', category: '旅行', title: '近期旅途中的八个画面', excerpt: '寺庙、山川、城市街道，以及那些值得保存的小细节。' },
+      { date: '在线项目', category: '教育科技', title: 'AI 课件讲解平台', excerpt: '一个面向学生的 AI 学习平台：将 PPT、PDF、讲义与实验指导转化为讲解、学习规划、互动练习与可提交批改的 Lab。GitHub Pages 版本直接在浏览器处理课件，方便零成本使用与分享。', href: 'https://shihaoran105-alt.github.io/courseware-platform/', repoHref: 'https://github.com/shihaoran105-alt/courseware-platform' },
     ],
     journeys: [
       { slug: 'czechia', location: '捷克 · 布拉格与布尔诺', date: '2025 年 8 月', title: '中欧的两种节奏', excerpt: '从布拉格层叠的街巷，到布尔诺更安静、更贴近学生生活的城市节奏。', image: asset('journal/Czech/brno-cover.jpg'), focus: '38% 48%' },

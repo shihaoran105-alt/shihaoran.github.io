@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { ArrowRight, Menu, X } from 'lucide-react'
-import { brnoGallery, content, journalCover, taiwanGallery, type Language } from './content'
+import { brnoGallery, content, taiwanGallery, type Language } from './content'
 import './styles.css'
 
 type Page = 'cv' | 'journal' | 'photos' | 'about'
@@ -59,15 +59,12 @@ function TaiwanStory({lang}:{lang:Language}) {
 }
 
 function Journal({setPage,t,selectedJourney,onOpenJourney}:{setPage:(p:Page)=>void,t:Copy,selectedJourney:string|null,onOpenJourney:(slug:string)=>void}) {
-  const [filter,setFilter] = useState(t.ui.all as string)
   const language: Language = t === content.zh ? 'zh' : 'en'
-  const cats = [t.ui.all,...new Set(t.posts.map(p=>p.category))]
-  const shown = filter===t.ui.all ? t.posts : t.posts.filter(p=>p.category===filter)
   useEffect(()=>{ if(selectedJourney) document.getElementById(`journey-${selectedJourney}`)?.scrollIntoView({behavior:'smooth',block:'start'}) },[selectedJourney])
   return <>
-    <section className="journal-hero"><h1>{t.journal.headline}</h1><div><p>{t.journal.intro}</p><a href="#essays">{t.ui.readLatest} <Arrow/></a></div></section>
-    <section className="featured"><Label>{t.ui.featuredEssay}</Label><div className="featured-grid"><div className="media-frame"><img src={journalCover.src} alt={journalCover.alt} style={{objectPosition:journalCover.focus}}/></div><article><span>{t.posts[0].date}　/　{t.posts[0].category}</span><h2>{t.posts[0].title}</h2><p>{t.posts[0].excerpt}</p><span className="draft-note">{t.ui.draft}</span></article></div></section>
-    <section id="essays" className="journal-list"><div className="journal-head"><Label>{t.ui.journal}</Label><div className="filters">{cats.map(c=><button className={filter===c?'active':''} onClick={()=>setFilter(c)} key={c}>{c}</button>)}</div></div>{shown.map(p=><article key={p.title}><time>{p.date}</time><span>{p.category}</span><div><h3>{p.title}</h3><p>{p.excerpt}</p></div><Arrow/></article>)}</section>
+    <section className="journal-hero"><h1>{t.journal.headline}</h1><div><p>{t.journal.intro}</p><a href="#projects">{t.ui.readLatest} <Arrow/></a></div></section>
+    <section className="featured"><Label>{t.ui.featuredEssay}</Label><div className="featured-grid"><div className="project-feature-art" aria-label={t.posts[0].title}><span>AI</span><small>STUDENT LEARNING TOOL</small><strong>Courseware<br/>Platform</strong></div><article><span>{t.posts[0].date}　/　{t.posts[0].category}</span><h2>{t.posts[0].title}</h2><p>{t.posts[0].excerpt}</p><div className="project-actions"><a className="draft-note" href={t.posts[0].href} target="_blank" rel="noreferrer">{t.ui.openProject} <Arrow/></a><a className="source-link" href={t.posts[0].repoHref} target="_blank" rel="noreferrer">{t.ui.viewSource}</a></div></article></div></section>
+    <section id="projects" className="journal-list"><div className="journal-head"><Label>{t.ui.journal}</Label></div>{t.posts.map(p=><article key={p.title}><time>{p.date}</time><span>{p.category}</span><div><h3>{p.title}</h3><p>{p.excerpt}</p><div className="project-links"><a href={p.href} target="_blank" rel="noreferrer">{t.ui.openProject} <Arrow/></a><a href={p.repoHref} target="_blank" rel="noreferrer">{t.ui.viewSource}</a></div></div></article>)}</section>
     <section className="journey-articles"><div className="journey-articles-head"><Label>{t.ui.journeyArchive}</Label><p>{t.journal.photoText}</p></div>{t.journeys.map((journey,i)=><article id={`journey-${journey.slug}`} className={`${selectedJourney===journey.slug?'selected ':''}${journey.slug==='czechia'||journey.slug==='taiwan'?'feature-story':''}`} key={journey.slug}><span>{String(i+1).padStart(2,'0')}</span><div><time>{journey.date}</time><h2>{journey.title}</h2><b>{journey.location}</b><p>{journey.excerpt}</p>{journey.slug==='czechia'?<BrnoStory lang={language}/>:journey.slug==='taiwan'?<TaiwanStory lang={language}/>:<em>{t.ui.storyDraft}</em>}</div></article>)}</section>
     <PhotoStrip setPage={setPage} t={t} onOpenJourney={onOpenJourney}/><Newsletter t={t}/>
   </>
